@@ -5,6 +5,8 @@ Welcome to your GitHub repository for the Annotated Bibliography Chatbot! This p
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+In order to try this Chatbot, please create rename the env.js.example file to env.js and input your api keys.
+
 ## Available Scripts
 
 In the project directory, you can run:
