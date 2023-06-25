@@ -1,29 +1,79 @@
 import './App.css';
+// App.js
 
-function App() {
+import React, { useState, useEffect } from "react";
+import Header from "/workspaces/codespaces-react/src/components/Header.js";
+import ChatContainer from "./components/ChatContainer";
+import InputForm from "./components/InputForm";
+import fetchBotReply from "/workspaces/codespaces-react/src/components/fetchBotReply.js";
+
+const App = () => {
+  const [messages, setMessages] = useState([]);
+  const [userInput, setUserInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "chatgpt", text: "Loading...", isLoading: true }
+      ]);
+    } else {
+      setMessages((prevMessages) =>
+        prevMessages.filter((message) => !message.isLoading)
+      );
+    }
+  }, [isLoading]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const message = userInput.trim();
+
+    if (message.length > 0) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "user", text: message }
+      ]);
+      setUserInput("");
+
+      // Generate and add ChatGPT-like response here
+      setIsLoading(true);
+      try {
+        const chatGptResponse = await fetchBotReply(userInput);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { sender: "chatgpt", text: chatGptResponse }
+        ]);
+      } catch (error) {
+        console.error("Error fetching bot reply:", error.message);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "chatgpt",
+            text: "Sorry, there was an error generating a response."
+          }
+        ]);
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (event) => {
+    setUserInput(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div>
+      <Header />
+      <ChatContainer messages={messages} />
+      <InputForm
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        value={userInput}
+      />
     </div>
   );
-}
+};
 
 export default App;
+
