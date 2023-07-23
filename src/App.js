@@ -2,10 +2,10 @@ import './App.css';
 // App.js
 
 import React, { useState, useEffect } from "react";
-import Header from "/workspaces/codespaces-react/src/components/Header.js";
+import Header from "./components/Header.js";
 import ChatContainer from "./components/ChatContainer";
 import InputForm from "./components/InputForm";
-import fetchBotReply from "/workspaces/codespaces-react/src/components/fetchBotReply.js";
+import fetchBotReply from "./components/fetchBotReply.js";
 
 const App = () => {
   const [messages, setMessages] = useState([]);

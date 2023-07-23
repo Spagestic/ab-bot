@@ -1,6 +1,6 @@
 // fetchBotReply.js
 
-import { process } from "/workspaces/codespaces-react/src/env.js";
+import { process } from "../env.js";
 import { OpenAI } from "langchain/llms/openai";
 import { ConversationSummaryMemory } from "langchain/memory";
 import {
