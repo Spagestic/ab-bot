@@ -1,61 +1,127 @@
 // fetchBotReply.js
 
-import { process } from "../env.js";
-import { OpenAI } from "langchain/llms/openai";
-import { ConversationSummaryMemory } from "langchain/memory";
+import { process } from '../env.js';
+import { OpenAI } from 'langchain/llms/openai';
+import { ConversationSummaryMemory } from 'langchain/memory';
 import {
-  PromptTemplate
+  PromptTemplate,
   // SystemMessagePromptTemplate,
   // ChatPromptTemplate,
   // HumanMessagePromptTemplate
-} from "langchain/prompts";
-import { LLMChain } from "langchain/chains";
+} from 'langchain/prompts';
+import { LLMChain } from 'langchain/chains';
 // import { MultiPromptChain } from "langchain/chains";
 // import { initializeAgentExecutorWithOptions } from "langchain/agents";
 // import { BingSerpAPI } from "langchain/tools";
 
 const memory = new ConversationSummaryMemory({
-  memoryKey: "chat_history",
+  memoryKey: 'chat_history',
   llm: new OpenAI({
-    modelName: "gpt-3.5-turbo",
+    modelName: 'gpt-3.5-turbo',
     temperature: 0,
-    openAIApiKey: process.env.OPENAI_API_KEY
-  })
+    openAIApiKey: process.env.OPENAI_API_KEY,
+  }),
 });
+
+const createOpenAIChain = (restOptions) => {
+  return new LLMChain({
+    llm: new OpenAI({
+      modelName: 'gpt-3.5-turbo',
+      // streaming: true,
+      temperature: 0.9,
+      // verbose: true,
+      // maxTokens: 90,
+      stop: ['\n'],
+      // verbose: true,
+      openAIApiKey: process.env.OPENAI_API_KEY,
+    }),
+    ...restOptions,
+  });
+};
+
+const understandingTemplate = `
+  You are an AI that helps university freshmen with understanding academic content.
+  Current conversation:
+  {chat_history}
+  User: {input}
+  AI:`;
+
+const citationTemplate = `
+  You are an AI that assists university freshmen with making citations in their academic writing.
+  Current conversation:
+  {chat_history}
+  User: {input}
+  AI:`;
+
+const feedbackTemplate = `
+  You are an AI that provides feedback on academic writing for university freshmen.
+  Current conversation:
+  {chat_history}
+  User: {input}
+  AI:`;
+
+const tasksTemplate = `
+  You are an AI that assigns small tasks to university freshmen to help them with their academic writing.
+  Current conversation:
+  {chat_history}
+  User: {input}
+  AI:`;
+
+let keyword;
+// Keyword List
+const keywordList = [
+  'Understanding the content of the paper',
+  'help making citations',
+  'Suggested article revisions',
+  'Write annotation for something',
+];
+// Prompt Template Hash Table
+const templateMap = {
+  'Understanding the content of the paper': PromptTemplate.fromTemplate(understandingTemplate),
+  'help making citations': PromptTemplate.fromTemplate(citationTemplate),
+  'Suggested article revisions':
+    PromptTemplate.fromTemplate(feedbackTemplate),
+  'Write annotation for something': PromptTemplate.fromTemplate(tasksTemplate),
+};
 
 export default async function fetchBotReply(userInput) {
   try {
-    const prompt = PromptTemplate.fromTemplate(`
-      You will mentor university freshmen with writing an annotated bibliography, using APA 7th edition style
-      You will not write assignments for students but will assist them with specific steps of the task.
-      You will also detect and flag potential plagiarism for students to revise.
-      You aims to increase AI literacy and promote academic integrity among university freshmen.
-      The following is a friendly conversation between a human and an AI.
-      Current conversation:
-      {chat_history}
-      user: {input}
-      chatgpt:`);
+    // If the user's intention is not known, or if the program does not support the user's previous intention
+    // Then identify the user's request
+    if (!keyword || keyword === 'none') {
+      const chainToGetTemplate = createOpenAIChain({
+        prompt: PromptTemplate.fromTemplate(`You are a master of language and you can extract the needs of others from their words.
+        I will provide a text along with a list of keywords, the list of keywords is separated by ",". You need to find the most relevant keyword in the keyword list from the provided text and return a plain string for that keyword, try to relax the matching rules if you can't find a match, or return the string "none" if there is no match.
+        Please remember, do not include anything other than the keyword and "none" in your response.
 
-    const chain = new LLMChain({
-      llm: new OpenAI({
-        modelName: "gpt-3.5-turbo",
-        // streaming: true,
-        temperature: 0.9,
-        // verbose: true,
-        // maxTokens: 90,
-        stop: ["\n"],
-        // verbose: true,
-        openAIApiKey: process.env.OPENAI_API_KEY
-      }),
+Keyword list:
+{keyword_list}
+
+Text:
+{input}`),
+      });
+      const templateKeyword = await chainToGetTemplate.call({
+        keyword_list: keywordList.join(', '),
+        input: userInput,
+      });
+
+      keyword = templateKeyword.text;
+      console.log(keyword);
+    }
+
+    const prompt = templateMap[keyword];
+
+    if (!prompt) return 'This feature is not currently supported';
+
+    const chain = createOpenAIChain({
       prompt,
-      memory
+      memory,
     });
 
     const res = await chain.call({ input: userInput });
-
     return res.text.trim();
   } catch (error) {
-    console.error("Error fetching bot reply:", error.message);
+    console.error('Error fetching bot reply:', error.message);
     throw error;
   }
 }
@@ -136,34 +202,6 @@ export default async function fetchBotReply(userInput) {
 //   "Provide feedback on writing",
 //   "Assign small tasks to students"
 // ];
-
-// const understandingTemplate = `
-//   You are an AI that helps university freshmen with understanding academic content.
-//   Current conversation:
-//   {chat_history}
-//   User: {input}
-//   AI:`;
-
-// const citationTemplate = `
-//   You are an AI that assists university freshmen with making citations in their academic writing.
-//   Current conversation:
-//   {chat_history}
-//   User: {input}
-//   AI:`;
-
-// const feedbackTemplate = `
-//   You are an AI that provides feedback on academic writing for university freshmen.
-//   Current conversation:
-//   {chat_history}
-//   User: {input}
-//   AI:`;
-
-// const tasksTemplate = `
-//   You are an AI that assigns small tasks to university freshmen to help them with their academic writing.
-//   Current conversation:
-//   {chat_history}
-//   User: {input}
-//   AI:`;
 
 // const promptTemplates = [
 //   understandingTemplate,
