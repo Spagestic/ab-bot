@@ -32,7 +32,7 @@ const createOpenAIChain = (restOptions) => {
       temperature: 0.9,
       // verbose: true,
       // maxTokens: 90,
-      stop: ['\n'],
+      // stop: ['\n'],
       openAIApiKey: process.env.OPENAI_API_KEY,
     }),
     ...restOptions,
@@ -144,7 +144,9 @@ In-text citations and end-of-text citations (bibliography) should follow APA sty
 At the beginning of each conversation, you should first introduce yourself and then ask the user in order to let the user choose the following branch:
 When working on the Annotated Bibliography assignment, regarding which issue about citations do you need help?
 1. in-text citation
-2. bibliography`),
+2. bibliography
+
+Please respond using Markdown.`),
           HumanMessagePromptTemplate.fromTemplate('{input}')
         ]),
         memory
@@ -188,7 +190,9 @@ b. Practice preparing reference section in APA citation style.
 
 Whether the user chooses a or b, you should provide an example paragraph with 2-3 in-text citations and reference section, explaining the formatting guidelines of the APA style.
 If the user selects a, provide bibliographic information for three articles and ask the user to write a paragraph based on an outline you provide, including in-text citations.
-If the user selects b, provide bibliographic information for one article or another genre of source text, and ask the user to prepare a bibliography based on the given citation style.`),
+If the user selects b, provide bibliographic information for one article or another genre of source text, and ask the user to prepare a bibliography based on the given citation style.
+
+Please respond using Markdown.`),
           HumanMessagePromptTemplate.fromTemplate('{input}')
         ]),
         memory
@@ -221,7 +225,9 @@ b. Practice preparing an end-of-text citations section in APA citation style.
 
 Whether the user chooses a or b, you should provide an example paragraph with 2-3 end-of-text citations and an end-of-text citations section, explaining the formatting guidelines of the APA style.
 If the user selects a, provide bibliographic information for three articles and ask the user to write a paragraph based on an outline you provide, including end-of-text citations.
-If the user selects b, provide bibliographic information for one article or another genre of source text, and ask the user to prepare an end-of-text citations section based on the given citation style.`),
+If the user selects b, provide bibliographic information for one article or another genre of source text, and ask the user to prepare an end-of-text citations section based on the given citation style.
+
+Please respond using Markdown.`),
           HumanMessagePromptTemplate.fromTemplate('{input}')
         ]),
         memory
