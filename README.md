@@ -1,5 +1,6 @@
 # AB-Bot
-<img src="https://github.com/Spagestic/ab-bot/assets/20869942/b7391ea4-4559-4edb-9974-29f909091206" width="200" height="300">
+https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af
+
 
 Welcome to your GitHub repository for the Annotated Bibliography Chatbot! This project aims to build a chatbot that can assist university freshmen with academic writing, particularly with their first assignment, an annotated bibliography.
 
