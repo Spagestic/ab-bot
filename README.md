@@ -34,7 +34,7 @@ Contributions are welcome! For major changes, please open an issue first to disc
 
 For any queries or collaborations, feel free to reach out:
 
-- [LinkedIn][(https://linkedin.com/in/yourname)](https://www.linkedin.com/in/vishalginni/details/experience/)]
+- [LinkedIn](https://www.linkedin.com/in/vishalginni/)
 
 ## License
 
