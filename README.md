@@ -1,6 +1,8 @@
 # AB-Bot - Your Academic Writing Assistant
 
+<div align="center">
 https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af
+</div>
 
 AB-Bot is a chatbot designed to simplify the process of creating annotated bibliographies for university students. It provides personalized guidance and resources to help freshmen excel in their academic writing assignments.
 
