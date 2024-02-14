@@ -1,78 +1,42 @@
-# AB-Bot
-https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af
+# AB-Bot - Your Academic Writing Assistant
+
+![AB-Bot Demo Video](https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af)
+
+AB-Bot is a chatbot designed to simplify the process of creating annotated bibliographies for university students. It provides personalized guidance and resources to help freshmen excel in their academic writing assignments.
 
 
-Welcome to your GitHub repository for the Annotated Bibliography Chatbot! This project aims to build a chatbot that can assist university freshmen with academic writing, particularly with their first assignment, an annotated bibliography.
+## Features
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Simple Interactive Chatbot interface for easy navigation
+- Step-by-step assistance for creating annotated bibliographies
 
-In order to try this Chatbot, please create rename the env.js.example file to env.js and input your api keys.
+## Technologies used
 
-## Available Scripts
+- React.js
+- LangChain
+- OpenAI API
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+To get started with AB-Bot, follow these simple steps:
 
-We've already run this for you in the `Codespaces: server` terminal window below. If you need to stop the server for any reason you can just run `npm start` again to bring it back online.
+1. Clone the repository: `git clone https://github.com/Spagestic/ab-bot.git`
+2. Navigate to the project directory: `cd ab-bot`
+3. Install dependencies: `npm install`
+4. Rename `.env.example` to `.env` and add your API keys.
+5. Start the development server: `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) in the built-in Simple Browser (`Cmd/Ctrl + Shift + P > Simple Browser: Show`) to view your running application.
+## Contributing
 
-The page will reload automatically when you make changes.\
-You may also see any lint errors in the console.
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change. You can also contribute by reporting bugs, suggesting enhancements, or improving documentation.
 
-### `npm test`
+## Contact
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For any queries or collaborations, feel free to reach out:
 
-### `npm run build`
+- [Twitter](https://twitter.com/yourhandle)
+- [LinkedIn](https://linkedin.com/in/yourname)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
