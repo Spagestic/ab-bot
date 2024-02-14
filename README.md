@@ -1,6 +1,6 @@
 # AB-Bot - Your Academic Writing Assistant
 
-![AB-Bot Demo Video](https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af)
+https://github.com/Spagestic/ab-bot/assets/20869942/2714c496-39a9-400e-b191-41d3bb0af5af
 
 AB-Bot is a chatbot designed to simplify the process of creating annotated bibliographies for university students. It provides personalized guidance and resources to help freshmen excel in their academic writing assignments.
 
@@ -9,12 +9,15 @@ AB-Bot is a chatbot designed to simplify the process of creating annotated bibli
 
 - Simple Interactive Chatbot interface for easy navigation
 - Step-by-step assistance for creating annotated bibliographies
+- Generating an Outlines
+- Contructing In-text Citations
+- Providing guidance with paragraph structuring
 
-## Technologies used
+## Built With
 
-- React.js
-- LangChain
-- OpenAI API
+- [React.js](https://reactjs.org/)
+- [LangChain](https://langchain.ai/)
+- [OpenAI API](https://openai.com/api/)
 
 ## Getting Started
 
