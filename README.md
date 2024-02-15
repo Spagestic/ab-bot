@@ -7,7 +7,6 @@ AB-Bot is a chatbot designed to simplify the process of creating annotated bibli
 
 ## Features
 
-- Simple Interactive Chatbot interface for easy navigation
 - Step-by-step assistance for creating annotated bibliographies
 - Generating text Outlines
 - Constructing In-text Citations
